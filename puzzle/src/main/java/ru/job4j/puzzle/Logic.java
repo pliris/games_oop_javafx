@@ -1,6 +1,7 @@
 package ru.job4j.puzzle;
 
 import ru.job4j.puzzle.firuges.Cell;
+import ru.job4j.puzzle.firuges.Checker;
 import ru.job4j.puzzle.firuges.Figure;
 
 import java.util.Arrays;
@@ -71,21 +72,52 @@ public class Logic {
     public boolean isWin() {
         int[][] table = this.convert();
         boolean result = false;
-        return result;
-    }
-
-    public int[][] convert() {
-        int[][] table = new int[this.size][this.size];
-        for (int row = 0; row != table.length; row++) {
-            for (int cell = 0; cell != table.length; cell++) {
-                int position = this.findBy(new Cell(row, cell));
-                if (position != -1 && this.figures[position].movable()) {
-                    table[row][cell] = 1;
+        for (int i = 0; i < table.length; i++) {
+            if (table[i][i] == 1) {
+                if (monoHorizontal(table, i) || (monoVertical(table, i))) {
+                    result = true;
+                    break;
                 }
             }
         }
-        return table;
+
+        return result;
     }
+
+        private boolean monoVertical(int[][] tab, int column) {
+        boolean rst = true;
+        for (int i = 0; i < tab.length; i++) {
+            if (tab[i][column] != 1) {
+                rst = false;
+                break;
+            }
+        }
+        return rst;
+        }
+
+        private boolean monoHorizontal(int[][] tab, int row) {
+        boolean rst = true;
+        for (int i = 0; i < tab[row].length; i++) {
+        if (tab[row][i] != 1) {
+            rst = false;
+        break;
+        }
+        }
+        return rst;
+        }
+
+        public int[][] convert() {
+            int[][] table = new int[this.size][this.size];
+            for (int row = 0; row != table.length; row++) {
+                for (int cell = 0; cell != table.length; cell++) {
+                    int position = this.findBy(new Cell(row, cell));
+                    if (position != -1 && this.figures[position].movable()) {
+                        table[row][cell] = 1;
+                    }
+                }
+            }
+            return table;
+        }
 
     @Override
     public String toString() {
