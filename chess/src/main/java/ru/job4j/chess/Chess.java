@@ -113,7 +113,7 @@ public class Chess extends Application {
         this.buildBlackTeam(grid);
     }
 
-    private void buildBlackTeam(Group grid) {
+    public void buildBlackTeam(Group grid) {
         this.add(new PawnBlack(Cell.A7), grid);
         this.add(new PawnBlack(Cell.B7), grid);
         this.add(new PawnBlack(Cell.C7), grid);
