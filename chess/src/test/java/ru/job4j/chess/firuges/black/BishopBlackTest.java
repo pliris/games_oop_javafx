@@ -7,8 +7,8 @@ import ru.job4j.chess.firuges.Cell;
 import ru.job4j.chess.firuges.Figure;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
+import static ru.job4j.chess.firuges.Cell.*;
 
 public class BishopBlackTest {
 
@@ -26,6 +26,18 @@ public class BishopBlackTest {
         assertThat(expected.position(), is (Cell.D7));
     }
     @Test
-    public void whenWayFromC1Then
+    public void whenWayFromC1ThenG5() {
+        BishopBlack bishopBlack = new BishopBlack(C1);
+        Cell [] steps = bishopBlack.way(C1, G5);
+        Cell[] expected = new Cell[] {D2, E3, F4, G5};
+        assertArrayEquals(expected, steps);
+    }
 
+    @Test
+    public void whenWayFromE5ThenA1() {
+        BishopBlack bishopBlack = new BishopBlack(E5);
+        Cell [] steps = bishopBlack.way(E5, A1);
+        Cell[] expected = new Cell[] {D4, C3, B2, A1};
+        assertArrayEquals(expected, steps);
+    }
 }
