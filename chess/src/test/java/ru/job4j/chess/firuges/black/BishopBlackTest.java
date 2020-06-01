@@ -25,6 +25,7 @@ public class BishopBlackTest {
         Figure expected = bishopBlack.copy(Cell.D7);
         assertThat(expected.position(), is (Cell.D7));
     }
+
     @Test
     public void whenWayFromC1ThenG5() {
         BishopBlack bishopBlack = new BishopBlack(C1);
@@ -32,7 +33,13 @@ public class BishopBlackTest {
         Cell[] expected = new Cell[] {D2, E3, F4, G5};
         assertArrayEquals(expected, steps);
     }
-
+    @Test
+    public void whenWayFromE5ThenH2() {
+        BishopBlack bishopBlack = new BishopBlack(E5);
+        Cell [] steps = bishopBlack.way(E5, H2);
+        Cell[] expected = new Cell[] {F4, G3, H2};
+        assertArrayEquals(expected, steps);
+    }
     @Test
     public void whenWayFromE5ThenA1() {
         BishopBlack bishopBlack = new BishopBlack(E5);

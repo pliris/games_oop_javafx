@@ -23,15 +23,28 @@ public class Logic {
 
     public boolean move(Cell source, Cell dest) {
         boolean rst = false;
-        int index = this.findBy(source);
-        if (index != -1) {
-            Cell[] steps = this.figures[index].way(source, dest);
-            for (int i = 0; i < this.figures.length; i++)
-            if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
-                rst = true;
-                this.figures[index] = this.figures[index].copy(dest);
+        try {
+            int index = this.findBy(source);
+            if (index != -1) {
+                Cell[] steps = this.figures[index].way(source, dest);
+                for (Cell cell : steps) {
+                    for (int i = 0; i < figures.length; i++) {
+                        if (figures[i] != null && figures[i].position().equals(cell)) {
+                            rst = false;
+                            break;
+                        }
+                        break;
+                    }
+                    break;
+                }
+                if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
+                    rst = true;
+                    this.figures[index] = this.figures[index].copy(dest);
 
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return rst;
     }

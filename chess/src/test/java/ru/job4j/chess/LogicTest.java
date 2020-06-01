@@ -16,7 +16,6 @@ public class LogicTest {
         boolean rsl = logic.move(Cell.C1, Cell.H6);
         assertThat(rsl, is(true));
     }
-    @Ignore
     @Test
     public void whenMoveC1ToH6ThenFalse() {
         Logic logic = new Logic();
