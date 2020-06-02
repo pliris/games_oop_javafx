@@ -40,7 +40,6 @@ public class Logic {
                 if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
                     rst = true;
                     this.figures[index] = this.figures[index].copy(dest);
-
                 }
             }
         } catch (Exception e) {
@@ -69,8 +68,8 @@ public class Logic {
 
     @Override
     public String toString() {
-        return "Logic{" +
-                "figures=" + Arrays.toString(this.figures) +
-                '}';
+        return "Logic{"
+               + "figures=" + Arrays.toString(this.figures)
+               + '}';
     }
 }
