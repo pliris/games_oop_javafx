@@ -20,6 +20,15 @@ public class Logic {
     public void add(Figure figure) {
         this.figures[this.index++] = figure;
     }
+    private boolean correctWay(Cell[] cells) {
+        boolean rst = true;
+        for (int i = 1; i < cells.length; i++) {
+            if (this.findBy(cells[i]) != -1) {
+                rst = false;
+            }
+        }
+        return rst;
+    }
 
     public boolean move(Cell source, Cell dest) {
         boolean rst = false;
@@ -27,16 +36,10 @@ public class Logic {
             int index = this.findBy(source);
             if (index != -1) {
                 Cell[] steps = this.figures[index].way(source, dest);
-                if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
-                    rst = true;
-                    this.figures[index] = this.figures[index].copy(dest);
-                }
-                for (Cell cell : steps) {
-                    for (int i = 0; i < figures.length; i++) {
-                        if (figures[i] != null && figures[i].position().equals(cell)) {
-                            rst = false;
-                            break;
-                        }
+                if (this.correctWay(steps)) {
+                    if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
+                        rst = true;
+                        this.figures[index] = this.figures[index].copy(dest);
                     }
                 }
             }

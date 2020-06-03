@@ -27,7 +27,7 @@ public class    BishopBlack implements Figure {
             int size = Math.abs(dest.x - source.x);
             Cell[] steps = new Cell[size];
             int deltaX = (dest.x - source.x) / size;
-            int deltaY = (dest.y - source.y) / size ;
+            int deltaY = (dest.y - source.y) / size;
             for (int index = 0; index < size; index++) {
                 int x = deltaX > 0 ? index + deltaX : deltaX - index;
                 int y = deltaY > 0 ? index + deltaY : deltaY - index;
@@ -37,7 +37,7 @@ public class    BishopBlack implements Figure {
     }
 
     public boolean isDiagonal(Cell source, Cell dest) {
-        boolean rst = dest.x - source.x == dest.y - source.y || source.x + source.y == dest.x + dest.y;
+        boolean rst = Math.abs(dest.x - source.x) == Math.abs(dest.y - source.y);
         return rst;
     }
 
