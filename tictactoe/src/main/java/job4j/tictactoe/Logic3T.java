@@ -1,6 +1,9 @@
 package job4j.tictactoe;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Logic3T {
     private final Figure3T[][] table;
@@ -24,20 +27,28 @@ public class Logic3T {
     }
 
     public boolean isWinnerX() {
-        return this.fillBy(Figure3T::hasMarkX, 0, 0, 1, 0) ||
-                this.fillBy(Figure3T::hasMarkX, 0, 0, 0, 1) ||
-                this.fillBy(Figure3T::hasMarkX, 0,0, 1, 1) ||
-                this.fillBy(Figure3T::hasMarkX, this.table.length - 1 , 0, -1, 1);
+        return this.fillBy(f -> f.hasMarkX(), 0, 0, 1, 0) ||
+                this.fillBy(f -> f.hasMarkX(), 0, 0, 0, 1) ||
+                this.fillBy(f -> f.hasMarkX(), 0, 0, 1, 1) ||
+                this.fillBy(f -> f.hasMarkX(), this.table.length - 1, 0, -1, 1);
     }
 
     public boolean isWinnerO() {
-        return this.fillBy(Figure3T::hasMarkO, 0, 0, 1, 0) ||
-                this.fillBy(Figure3T::hasMarkO, 0, 0, 0, 1) ||
-                this.fillBy(Figure3T::hasMarkO, 0,0, 1, 1) ||
-                this.fillBy(Figure3T::hasMarkO, this.table.length - 1, 0, -1, 1);
+        return this.fillBy(f -> f.hasMarkO(), 0, 0, 1, 0) ||
+                this.fillBy(f -> f.hasMarkO(), 0, 0, 0, 1) ||
+                this.fillBy(f -> f.hasMarkO(), 0, 0, 1, 1) ||
+                this.fillBy(f -> f.hasMarkO(), this.table.length - 1, 0, -1, 1);
     }
 
     public boolean hasGap() {
-        return true;
+        boolean gap = true;
+        List<Figure3T> list = Arrays.stream(table)
+                .flatMap(Arrays::stream)
+                .filter(f -> !f.hasMarkX() || !f.hasMarkO())
+                .collect(Collectors.toList());
+        if (list.size() == 0) {
+            gap = false;
+        }
+        return gap;
     }
 }
