@@ -30,6 +30,10 @@ public class Logic3T {
         return this.fillBy(f -> f.hasMarkX(), 0, 0, 1, 0) ||
                 this.fillBy(f -> f.hasMarkX(), 0, 0, 0, 1) ||
                 this.fillBy(f -> f.hasMarkX(), 0, 0, 1, 1) ||
+                this.fillBy(f -> f.hasMarkX(), 0, 1, 1, 0) ||
+                this.fillBy(f -> f.hasMarkX(), 1, 0, 0, 1) ||
+                this.fillBy(f -> f.hasMarkX(), 0, this.table.length - 1, 1, 0) ||
+                this.fillBy(f -> f.hasMarkX(), this.table.length - 1, 0, 0, 1) ||
                 this.fillBy(f -> f.hasMarkX(), this.table.length - 1, 0, -1, 1);
     }
 
@@ -37,6 +41,10 @@ public class Logic3T {
         return this.fillBy(f -> f.hasMarkO(), 0, 0, 1, 0) ||
                 this.fillBy(f -> f.hasMarkO(), 0, 0, 0, 1) ||
                 this.fillBy(f -> f.hasMarkO(), 0, 0, 1, 1) ||
+                this.fillBy(f -> f.hasMarkO(), 0, 1, 1, 0) ||
+                this.fillBy(f -> f.hasMarkO(), 1, 0, 0, 1) ||
+                this.fillBy(f -> f.hasMarkO(), 0, this.table.length - 1, 1, 0) ||
+                this.fillBy(f -> f.hasMarkO(), this.table.length - 1, 0, 0, 1) ||
                 this.fillBy(f -> f.hasMarkO(), this.table.length - 1, 0, -1, 1);
     }
 
