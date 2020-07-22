@@ -26,22 +26,14 @@ public class Logic3T {
         return result;
     }
     public boolean winXorO(Predicate<Figure3T> predicate) {
-       return this.fillBy(f -> f.hasMarkO(), 0, 0, 1, 0) ||
-                this.fillBy(f -> f.hasMarkO(), 0, 0, 0, 1) ||
-                this.fillBy(f -> f.hasMarkO(), 0, 0, 1, 1) ||
-                this.fillBy(f -> f.hasMarkO(), 0, 1, 1, 0) ||
-                this.fillBy(f -> f.hasMarkO(), 1, 0, 0, 1) ||
-                this.fillBy(f -> f.hasMarkO(), 0, this.table.length - 1, 1, 0) ||
-                this.fillBy(f -> f.hasMarkO(), this.table.length - 1, 0, 0, 1) ||
-                this.fillBy(f -> f.hasMarkO(), this.table.length - 1, 0, -1, 1)||
-        this.fillBy(f -> f.hasMarkX(), 0, 0, 1, 0) ||
-                this.fillBy(f -> f.hasMarkX(), 0, 0, 0, 1) ||
-                this.fillBy(f -> f.hasMarkX(), 0, 0, 1, 1) ||
-                this.fillBy(f -> f.hasMarkX(), 0, 1, 1, 0) ||
-                this.fillBy(f -> f.hasMarkX(), 1, 0, 0, 1) ||
-                this.fillBy(f -> f.hasMarkX(), 0, this.table.length - 1, 1, 0) ||
-                this.fillBy(f -> f.hasMarkX(), this.table.length - 1, 0, 0, 1) ||
-                this.fillBy(f -> f.hasMarkX(), this.table.length - 1, 0, -1, 1);
+       return this.fillBy(predicate, 0, 0, 1, 0) ||
+                this.fillBy(predicate, 0, 0, 0, 1) ||
+                this.fillBy(predicate, 0, 0, 1, 1) ||
+                this.fillBy(predicate, 0, 1, 1, 0) ||
+                this.fillBy(predicate, 1, 0, 0, 1) ||
+                this.fillBy(predicate, 0, this.table.length - 1, 1, 0) ||
+                this.fillBy(predicate, this.table.length - 1, 0, 0, 1) ||
+                this.fillBy(predicate, this.table.length - 1, 0, -1, 1);
     }
 
     public boolean isWinnerX() {
